@@ -171,9 +171,207 @@ func main(){
 
 	// go garbage collects the previous s string
 
+	// composite data types
+	// array, slice, map
+	// declaration
+	// array => [4]int
+	// slice => []int
+	// map => map[string] int
+
+	// array are typed by size, which is fixed at compile time
+	
+	// all these are equivalent
+	// var a [3]int
+	// var b [3]int{0, 0, 0}
+	// var c [...]{0, 0, 0} // sized by initializer
+
+	// var d [3]int
+	// d = b //elements are copied, not reference
+	
+	// var m [...]int{1, 2, 3, 4}
+
+	// c = m // types mismatched
+	
+	// Arrays are passed by value, thus elements are copied
+
+	// slices, slices works the same way as string does
+	// It has a descriptor, lenth and capacity
+	// var a []int   // nil
+	// var b []int{1, 2} // initialized
+	
+	// a = append(a, 1)    append 1 to a 
+	// b = append(b, 3)	  []int{1, 2, 3}
+
+	// a = b copied b descriptor in a
+	
+	// d := make([]int, 5) // []int{0, 0, 0, 0, 0}
+	// e := a  //same storage
+	// e[0] == a[0] // true
+
+	// slices are passed by reference
+	// slices are indexed like [8: 11] 8 is included and 11 is not
+	
+	// maps
+	// maps are dictionaries: indexed by key, returning a value
+	// read from a nil map, but inserting will panic
+	// var m map[string]int // nil, can read but cant insert
+	
+	// p := make(map[string]int) // non nill but empty
+	// a:= p["the"] // return 0 if key is not there
+	// b := m["the"] // return 0
+	// m["and"] = 1  // panic because nil map
+	// m = p // valid => copies p descriptor to m
+	// m["and"]++ //OK
+	// c := p["and"] // returns 1
+
+	// maps are passed by reference
+	// the type used for key nust have == and != defined
+
+	//maps cant be compared to one another
+	// maps can be compared only to nil as a special case
 	
 
+	// maps have a special two result lookup function
+	// the second variable tell if the key was there
+	// p := map[string]int{} // non-nil but empty
+	// a := p["the"] // return 0
+	
+	// b, ok := p["and"] // returns 0, false
+	
+	// p["the"]++
+	// c, ok := p["the"]   return 1, true
+	
+
+	// control structure
+	// if then else
+	// All if then statements require braces
+
+	// if a == b {
+	// 	// does this
+	// }else{
+	// 	// does this
+	// }
+
+	// another short declaration
+	// if err := doSomething(); err != nil {
+	// 	return err
+	// }
+
+	// go has only for loop
+	// for loops
+	// three parts, all optional (initialize, check, increment)
+	// for i:= 0; i < 10; i++ {
+
+	// }
+	// one variable is index for array and key for map
+	// for i := range myArray {
+
+	// }
+	// // two values index, and value for array and key, value for map
+	// for i, v := range myArray {
+
+	// }
+
+	// i, j := 0, 3
+	// for {
+	// 	if i > j {
+	// 		break
+	// 	}
+
+	// 	i++
+	// }
+	
+
+	// only want values, not index
+	// for _, v : range myArray {
+
+	// }
+
+	// switch
+	// switch a:= f.Get(); a {
+		// case 0, 1, 2:
+
+		// case 3, 4, 5, 6:
+
+		// default :
+
+	// }
+
+	// break is not required
+
+	// package
+	// everything in go lives inside a package.
+
+	//It's either at package scope or function scope
+	// can declare anything at package scope
+	// Every name that's capitalized in a package is exported(public) 
+
+	// imports
+	// each source file in your package must import what it needs
+	// cant have cyclic dependency
+	// 
+
+	// declaration
+	// Constant declaration with const
+	// Type declaration with type
+	// variable declaration with var
+	// short, initialized varibale decalration of any type := (inside a function)
+	// function declaration with func
+	// 
+
+	// var a int // default 0
+	// var b int = 1
 
 
+	// var c = 1 // int
+	// var d = 1.0 // float
+		
+	// declaration block
+	// var (
+	// 	x, y int
+	// 	z float64
+	// 	s string
+	// )
+
+
+	// short declaration
+	// :=
+	// cant be used outsidd of a function
+	//  must be used in a control statement
+	// must declare at least one new varibale
+	// wont reuse an existing declaration from an outer scope
+
+	// err := doSomething();
+
+	// err := doSomething() // wrong, redeclare
+
+	// x, err := getSomevalue();   // ok, assign in error
+
+
+	// structural typing
+	// same type if it has the same structure or behavior
+	// arrays of the same size and base type
+	// slices with the same base type
+	// maps of the same sequence of field types
+	// structs with the same sequence of field names/types
+	// functions with the same parameter & return types
+
+	// a := [...]int{1, 2, 3}
+	// b := [3]int{}
+
+	// a = b // ok
+	// 
+
+	// Named typing
+	// only same type if it has same declared type name
+	//  type x int // user defined types
+
+	// func main() {
+		// var a x  // x is defined type; base int
+		// b := 12 // int
+		// a = b // type mismatch
+		// a = 12  // ok, untyped literal
+		// a = x(b) //ok, type conversion
+	// }
 
 }
